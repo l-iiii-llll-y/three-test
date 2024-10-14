@@ -1,8 +1,9 @@
 import { FC, Suspense, useEffect, useState } from "react";
 import ThreeScene from './ThreeScene';
-import Icon from "@/images";
 import useMobileDetect from "@/hooks/useMobileDetect";
 import LoadingFull from "./ALoading";
+import Icon from "./images";
+import React from "react";
 const ABanner: FC<{ onShow?: () => void }> = ({ onShow }) => {
 
   const videos = ["./1.mp4", "./2.mp4", ""];

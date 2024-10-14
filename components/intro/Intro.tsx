@@ -20,27 +20,27 @@ const particleNum = 20000;
 
 //endregion
 
-let container = null;
-let width,
+let container: any = null;
+let width: number,
   height = null;
-let renderer = null;
-let renderTarget = null;
-let noise = null;
+let renderer: any = null;
+let renderTarget: any = null;
+let noise: any = null;
 
-let particleScene = null;
-let videoScene = null;
+let particleScene: any = null;
+let videoScene: any = null;
 
-let videoElements = [];
-let videoTextures = [];
+let videoElements: any = [];
+let videoTextures: any = [];
 
-let videoMaterial = null;
+let videoMaterial: any = null;
 
-let camera = null;
+let camera: any = null;
 
-let time = 0;
-let vidParticle = null;
+let time: any = 0;
+let vidParticle: any = null;
 
-let vidParticleConfig = {
+let vidParticleConfig: any = {
   progress: 0,
   spreadBase: 0.8,
   spreadAlter: 0.2,
@@ -49,8 +49,8 @@ let vidParticleConfig = {
   amplitude: 0.1,
 };
 
-let bgParticle = null;
-let bgParticleConfig = {
+let bgParticle: any = null;
+let bgParticleConfig: any = {
   num: 300,
   progress: 0,
   sampleScalar: 1000,
@@ -285,7 +285,7 @@ export default function ModelPage() {
     bgParticle = { psMat, psGeo, originalVertices, sizes, particles };
   }
 
-  function updateVidParticles(timestamp) {
+  function updateVidParticles(timestamp: any) {
     time = timestamp / 1000;
     const { psGeo, originalVertices } = vidParticle;
     const vertices = psGeo.attributes.position.array;
@@ -334,7 +334,7 @@ export default function ModelPage() {
     psGeo.attributes.position.needsUpdate = true;
   }
 
-  function updateNonVidParticles(timestamp) {
+  function updateNonVidParticles(timestamp: any) {
     const t = timestamp / 1000;
     const { psGeo, originalVertices } = bgParticle;
     const { sampleScalar, timeScalar, amplitude } = bgParticleConfig;
@@ -372,7 +372,7 @@ export default function ModelPage() {
 
     // StartVidTween()
 
-    function render(timestamp) {
+    function render(timestamp: any) {
       requestAnimationFrame(render);
       group.update(timestamp);
 
