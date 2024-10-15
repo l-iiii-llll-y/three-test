@@ -503,10 +503,9 @@ export default function ModelPage() {
   return (
     <>
       <div
-        className=" w-container"
         style={{ width: "100%", height: "calc(100vh - 60pt)" }}
       >
-        <div className=" w-container bg-fuchsia-50">
+        <div >
           <div
             id="three1"
             style={{
@@ -518,7 +517,7 @@ export default function ModelPage() {
           ></div>
         </div>
 
-        <div className="w-container  aos-init aos-animate  prismax  overflow-x-hidden m-auto mo:w-full mo:px-[30px]   mx-auto md:w-full md:px-[70px]   text-[#FFFFFF]">
+        <div className=" aos-init aos-animate  prismax  overflow-x-hidden m-auto mo:w-full px-[30px]   mx-auto md:w-full md:px-[70px]   text-[#FFFFFF]">
           <div
             className=" mo:!bottom-[160pt]"
             style={{
@@ -575,7 +574,7 @@ export default function ModelPage() {
             {buttonText}
           </button>
         </div>
-        <div className="w-container flex justify-end mo:hidden   m-auto mo:w-full mo:px-[30px]   mx-auto md:w-full md:px-[70px] ">
+        <div className="flex justify-end mo:hidden   m-auto mo:w-full mo:px-[30px]   mx-auto md:w-full md:px-[70px] ">
           <div
             className=" flex"
             style={{
