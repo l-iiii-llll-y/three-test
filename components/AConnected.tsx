@@ -20,7 +20,13 @@ const AConnected = () => {
         className="w-container bg-[#04070D] pb-[125px] mo:pb-[44px]  m-auto mo:w-full  mo:pl-[28px]  mx-auto md:w-full   flex justify-between  ">
         <div className="flex bf flex-col justify-center mt-[194px] mo:mt-[20px] px-5 font-semibold text-[76px] smd:text-[70px] mo:text-2xl leading-[100px] montserrat">
           <div className="  text-center  mo:w-[140px] mo:text-left text-white">
-            Let’s Stay Connected
+            <div>
+              {`Let’s Stay`}
+            </div>
+            <div>
+              {`Connected`}
+            </div>
+
           </div>
           <div className=" lg:mx-10 lg:px-10 flex gap-[55.35px]  smd:gap-[25px] mo:gap-0 md:ml-[55px] justify-center  ml-[35px] mo:ml-0 mo:flex-col pt-[89px] mo:pt-[30px]  font-normal text-[25px]  mo:text-[8px] leading-7 text-[#EEEEEEB2]">
             {apps.map((item, index) => {
@@ -51,7 +57,7 @@ const AConnected = () => {
                   <div className="mo:hidden  ">
                     <Icon
                       name={"IconArrow"}
-                      // className="group-hover:rotate-45 transition-500 group-hover:text-red"
+                      className="group-hover:rotate-45 transition-500 group-hover:text-red"
                       color={`${dealHover?.isHover && dealHover.index === index
 
                         ? "#FFFFFF"
@@ -64,7 +70,7 @@ const AConnected = () => {
             })}
           </div>
         </div>
-        <div className="flex  lg:h-[690px] lg:w-[49vh] md:w-[50vh]  ">
+        <div className="flex  lg:h-[690px] lg:w-[70vh] md:w-[50vh]  ">
           <img
             src={isMobile ? "./mo-connected.png" : "./stayConnected.png"}
             className="object-cover bg-cover   "

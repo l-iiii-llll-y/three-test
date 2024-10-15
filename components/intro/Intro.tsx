@@ -6,6 +6,7 @@ import * as THREE from "three";
 import { createNoise3D } from "simplex-noise";
 import * as TWEEN from "@tweenjs/tween.js";
 import Icon from "../images";
+import useMobileDetect from "@/hooks/useMobileDetect";
 
 //region: configs
 // const videoUrls = ['video1.mp4', 'video2.mp4', 'video3.mp4']
@@ -63,6 +64,7 @@ export default function ModelPage() {
   const [completed, setCompleted] = useState(false);
   const [buttonText, setButtonText] = useState("ENTER");
   const [dealHover, setDealHover] = useState<any>(null);
+
 
 
   const group = new TWEEN.Group();
@@ -398,11 +400,26 @@ export default function ModelPage() {
       .start();
   }
 
-  const texts = [
-    "High-quality data can only come from real people,\nand real human effort will always have true value.",
-    "PrismaX envisions a world where AI achieves human-level comprehension of the real world,\nrecognizing the invaluable role of human effort in this endeavor.",
-    "This is PrismaX,\nA Base Layer for Real-World Multimodal GenAI Apps",
+  // const texts = [
+  //   "High-quality data can only come from real people,\nand real human effort will always have true value.",
+  //   "PrismaX envisions a world where AI achieves human-level comprehension of the real world,\nrecognizing the invaluable role of human effort in this endeavor.",
+  //   "This is PrismaX,\nA Base Layer for Real-World Multimodal GenAI Apps",
+  // ];
+
+  const mobileTexts = [
+    `This is PrismaX, A Base Layer for\nReal-World Multimodal GenAI Apps`,
+    `High-quality data can only come from\nReal people…… and real human effort will\nalways have real value.`,
+    `PrismaX envisions a world where AI\nachieves human-level comprehension of\nthe real world, recognizing the invaluable\nrole of human effort in this endeavor.`,
   ];
+
+  const texts = [
+    `This is PrismaX, A Base Layer for Real-World Multimodal GenAI Apps`,
+    `High-quality data can only come from Real people…… \nand real human effort will always have real value.`,
+    `PrismaX envisions a world where AI achieves human-\nlevel comprehension of the real world, recognizing the\ninvaluable role of human effort in this endeavor.`,
+
+  ];
+
+
 
   function StartVidTween() {
     const emergeTweens = [];
@@ -503,17 +520,18 @@ export default function ModelPage() {
 
         <div className="w-container  aos-init aos-animate  prismax  overflow-x-hidden m-auto mo:w-full mo:px-[30px]   mx-auto md:w-full md:px-[70px]   text-[#FFFFFF]">
           <div
-            className=""
+            className=" mo:!bottom-[160pt]"
             style={{
               position: "absolute",
               bottom: "80pt",
-              margin: "0pt 40pt",
               zIndex: 1,
             }}
           >
             <AnimText text={text} />
             <p
-              className="animponly"
+
+              className=" w-full md:text-xl quattrocento font-medium  mo:text-xl  text-2xl mo:hidden  text-[#FFFFFF]"
+
               style={{
                 display: playing ? "none" : "block",
               }}
@@ -533,6 +551,7 @@ export default function ModelPage() {
           </div>
         </div>
         <div
+          className=" mo:!bottom-[120pt]"
           style={{
             display: playing ? "none" : "block",
             position: "absolute",
@@ -546,6 +565,8 @@ export default function ModelPage() {
           }}
         >
           <button
+            className=" rounded-[500px] ml-[-60px] mo:ml-0  border w-[10.4375rem] h-[3.6875rem] border-[hsla(0,0%,100%,.2)] text-[16px]  font-medium  hover:border-[#fff] btnE quattrocento"
+
             onClick={() => {
               StartVidTween();
               setPlaying(true);

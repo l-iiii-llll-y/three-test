@@ -188,7 +188,8 @@ const ABanner: FC<{ onShow?: () => void }> = ({ onShow }) => {
                       setIsClickEnter(true)
                       typeof onShow === 'function' && onShow()
                     }
-                    } className=" rounded-[500px] ml-[-60px] mo:ml-0  border w-[10.4375rem] h-[3.6875rem] border-[hsla(0,0%,100%,.2)] text-[16px]  font-medium  hover:border-[#fff] btnE quattrocento"
+                    }
+                    className=" rounded-[500px] ml-[-60px] mo:ml-0  border w-[10.4375rem] h-[3.6875rem] border-[hsla(0,0%,100%,.2)] text-[16px]  font-medium  hover:border-[#fff] btnE quattrocento"
                   >ENTER
                   </button>
                 </div>

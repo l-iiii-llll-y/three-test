@@ -19,10 +19,10 @@ export default function AnimText({ text }) {
     <>
       <div className="w-container  aos-init aos-animate  prismax  overflow-x-hidden m-auto mo:w-full mo:px-[30px]   mx-auto md:w-full md:px-[70px]   text-[#FFFFFF]">
         {linesOfChars.map((chars, indexl) => (
-          <p className="animp" key={Math.random()}>
+          <p className="animp " key={Math.random()}>
             {chars.map((char, index) => (
               <span
-                className="animspan"
+                className="animspan mo:!text-[10px] mo:!font-normal mo:!leading-[30px] "
                 key={Math.random()}
                 style={{ animationDelay: `${index * 0.02}s` }}
               >

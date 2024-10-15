@@ -3,7 +3,7 @@ import React from "react"
 const AHeader = () => {
 
   return <div className="   mo:py-[5px]  bg-black ">
-    <div className="w-container m-auto mo:w-full mo:pl-[24px] mo:pr-[29px] mx-auto md:w-full  mo:mt-[6px]">
+    <div className=" m-auto mo:w-full mo:pl-[24px] mo:pr-[29px] mx-auto md:w-full  mo:mt-[6px]">
       <div className="  flex  text-2xl leading-[30px] font-normal px-[70px] mo:px-0">
         <div className=" justify-between flex  items-center w-full" >
           <div className=" cursor-pointer">
