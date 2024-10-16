@@ -12,7 +12,7 @@ import useMobileDetect from "@/hooks/useMobileDetect";
 // const videoUrls = ['video1.mp4', 'video2.mp4', 'video3.mp4']
 const videoUrls = ["./walk1.mp4", "./2.mp4", "walk2.mp4"];
 
-const particleSizeBase = 3;
+const particleSizeBase = 6;
 const particleSizeAlter = 2;
 const spawnRadius = 2.4;
 const sqrRadius = spawnRadius * spawnRadius;
@@ -74,6 +74,15 @@ export default function ModelPage() {
     renderTarget.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
+  }
+
+  function getResolutionRatio() {
+    const width = window.screen.width;
+    const height = window.screen.height;
+
+    const widthRatio = width / 1920;
+    const heightRatio = height / 1080;
+    return Math.max(widthRatio, heightRatio);
   }
 
   function InitScene() {
@@ -166,8 +175,7 @@ export default function ModelPage() {
     const vertices = [];
     const sizes = [];
 
-    const sizeRatio = Math.min(window.devicePixelRatio, 2);
-
+    const particleSizeRatio = getResolutionRatio();
     for (let i = 0; i < particleNum; i++) {
       const angle = Math.random() * 2 * Math.PI;
       const radius = Math.sqrt(Math.random()) * spawnRadius;
@@ -179,7 +187,8 @@ export default function ModelPage() {
       vertices.push(0);
 
       sizes.push(
-        (particleSizeBase + Math.random() * particleSizeAlter) / (2 / sizeRatio)
+        (particleSizeBase + Math.random() * particleSizeAlter) *
+          particleSizeRatio
       );
     }
 
