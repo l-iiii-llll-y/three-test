@@ -65,8 +65,6 @@ export default function ModelPage() {
   const [buttonText, setButtonText] = useState("ENTER");
   const [dealHover, setDealHover] = useState<any>(null);
 
-
-
   const group = new TWEEN.Group();
 
   function OnResize() {
@@ -168,6 +166,8 @@ export default function ModelPage() {
     const vertices = [];
     const sizes = [];
 
+    const sizeRatio = Math.min(window.devicePixelRatio, 2);
+
     for (let i = 0; i < particleNum; i++) {
       const angle = Math.random() * 2 * Math.PI;
       const radius = Math.sqrt(Math.random()) * spawnRadius;
@@ -178,7 +178,9 @@ export default function ModelPage() {
       vertices.push(y);
       vertices.push(0);
 
-      sizes.push(particleSizeBase + Math.random() * particleSizeAlter);
+      sizes.push(
+        (particleSizeBase + Math.random() * particleSizeAlter) / (2 / sizeRatio)
+      );
     }
 
     const originalVertices = vertices.slice();
@@ -299,8 +301,8 @@ export default function ModelPage() {
         (vidParticleConfig.spreadBase + prog * vidParticleConfig.spreadAlter);
       const y =
         originalVertices[i + 1] *
-        (vidParticleConfig.spreadBase +
-          prog * vidParticleConfig.spreadAlter) +
+          (vidParticleConfig.spreadBase +
+            prog * vidParticleConfig.spreadAlter) +
         (-prog * prog + 1.6 * prog - 0.6);
       const z =
         originalVertices[i + 2] *
@@ -416,10 +418,7 @@ export default function ModelPage() {
     `This is PrismaX, A Base Layer for Real-World Multimodal GenAI Apps`,
     `High-quality data can only come from Real people…… \nand real human effort will always have real value.`,
     `PrismaX envisions a world where AI achieves human-\nlevel comprehension of the real world, recognizing the\ninvaluable role of human effort in this endeavor.`,
-
   ];
-
-
 
   function StartVidTween() {
     const emergeTweens = [];
@@ -502,10 +501,8 @@ export default function ModelPage() {
 
   return (
     <>
-      <div
-        style={{ width: "100%", height: "calc(100vh - 60pt)" }}
-      >
-        <div >
+      <div style={{ width: "100%", height: "calc(100vh - 60pt)" }}>
+        <div>
           <div
             id="three1"
             style={{
@@ -528,9 +525,7 @@ export default function ModelPage() {
           >
             <AnimText text={text} />
             <p
-
               className=" w-full md:text-xl quattrocento mo:justify-center  mo:text-center font-medium  mo:text-xl  text-2xl   text-[#FFFFFF]"
-
               style={{
                 display: playing ? "none" : "block",
               }}
@@ -565,7 +560,6 @@ export default function ModelPage() {
         >
           <button
             className=" rounded-[500px] ml-[-60px] mo:ml-0  border w-[10.4375rem] h-[3.6875rem] border-[hsla(0,0%,100%,.2)] text-[16px]  font-medium  hover:border-[#fff] btnE quattrocento"
-
             onClick={() => {
               StartVidTween();
               setPlaying(true);
@@ -596,7 +590,9 @@ export default function ModelPage() {
               onMouseLeave={() => {
                 setDealHover(false);
               }}
-              className={`flex cursor-pointer items-center gap-2 ${dealHover ? "text-[#FFFFFF]" : "text-[#EEEEEEB2] "}`}
+              className={`flex cursor-pointer items-center gap-2 ${
+                dealHover ? "text-[#FFFFFF]" : "text-[#EEEEEEB2] "
+              }`}
               onClick={() => {
                 //scroll window height animated
                 window.scrollTo({
