@@ -12,7 +12,7 @@ import useMobileDetect from "@/hooks/useMobileDetect";
 // const videoUrls = ['video1.mp4', 'video2.mp4', 'video3.mp4']
 const videoUrls = ["./walk1.mp4", "./2.mp4", "walk2.mp4"];
 
-const particleSizeBase = 6;
+const particleSizeBase = 4;
 const particleSizeAlter = 2;
 const spawnRadius = 2.4;
 const sqrRadius = spawnRadius * spawnRadius;
@@ -90,7 +90,7 @@ export default function ModelPage() {
     renderer.setSize(width, height);
     renderer.autoClear = false;
     container.appendChild(renderer.domElement);
-    renderTarget = new THREE.WebGLRenderTarget(width, height);
+    renderTarget = new THREE.WebGLRenderTarget(width - 200, height - 200);
     noise = createNoise3D();
 
     particleScene = new THREE.Scene();
@@ -517,9 +517,9 @@ export default function ModelPage() {
           ></div>
         </div>
 
-        <div className=" aos-init aos-animate  prismax  overflow-x-hidden m-auto mo:w-full px-[30px]   mx-auto md:w-full md:px-[70px]   text-[#FFFFFF]">
+        <div className=" aos-init aos-animate  w-full prismax   overflow-x-hidden m-auto mo:w-full px-[30px]   mx-auto md:w-full md:px-[70px]   text-[#FFFFFF]">
           <div
-            className=" mo:!bottom-[160pt]"
+            className=" mo:!bottom-[100pt]  "
             style={{
               position: "absolute",
               bottom: "80pt",
@@ -529,7 +529,7 @@ export default function ModelPage() {
             <AnimText text={text} />
             <p
 
-              className=" w-full md:text-xl quattrocento font-medium  mo:text-xl  text-2xl mo:hidden  text-[#FFFFFF]"
+              className=" w-full md:text-xl quattrocento mo:justify-center  mo:text-center font-medium  mo:text-xl  text-2xl   text-[#FFFFFF]"
 
               style={{
                 display: playing ? "none" : "block",
@@ -550,7 +550,7 @@ export default function ModelPage() {
           </div>
         </div>
         <div
-          className=" mo:!bottom-[120pt]"
+          className=" mo:!bottom-[80pt]"
           style={{
             display: playing ? "none" : "block",
             position: "absolute",
