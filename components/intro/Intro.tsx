@@ -12,7 +12,7 @@ import useMobileDetect from "@/hooks/useMobileDetect";
 // const videoUrls = ['video1.mp4', 'video2.mp4', 'video3.mp4']
 const videoUrls = ["./walk1.mp4", "./2.mp4", "walk2.mp4"];
 
-const particleSizeBase = 4;
+const particleSizeBase = 1;
 const particleSizeAlter = 2;
 const spawnRadius = 2.4;
 const sqrRadius = spawnRadius * spawnRadius;
