@@ -12,7 +12,7 @@ import useMobileDetect from "@/hooks/useMobileDetect";
 // const videoUrls = ['video1.mp4', 'video2.mp4', 'video3.mp4']
 const videoUrls = ["./walk1.mp4", "./2.mp4", "walk2.mp4"];
 
-const particleSizeBase = 1;
+const particleSizeBase = 3;
 const particleSizeAlter = 2;
 const spawnRadius = 2.4;
 const sqrRadius = spawnRadius * spawnRadius;
@@ -90,7 +90,7 @@ export default function ModelPage() {
     renderer.setSize(width, height);
     renderer.autoClear = false;
     container.appendChild(renderer.domElement);
-    renderTarget = new THREE.WebGLRenderTarget(width - 200, height - 200);
+    renderTarget = new THREE.WebGLRenderTarget(width, height);
     noise = createNoise3D();
 
     particleScene = new THREE.Scene();
