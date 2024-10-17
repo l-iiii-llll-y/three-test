@@ -82,7 +82,8 @@ export default function ModelPage() {
 
     const widthRatio = width / 1920;
     const heightRatio = height / 1080;
-    return Math.max(widthRatio, heightRatio);
+    const deviceRatio = window.devicePixelRatio === 1 ? 2 : 1;
+    return Math.max(widthRatio, heightRatio) / deviceRatio;
   }
 
   function InitScene() {
