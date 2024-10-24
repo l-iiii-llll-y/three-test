@@ -110,26 +110,63 @@ export default function ModelPage() {
   }
 
   function InitVideoAndTextures() {
-    videoUrls.forEach((url) => {
-      const video = document.createElement("video");
-      video.src = url;
-      video.crossOrigin = "anonymous";
-      video.loop = true;
-      video.muted = true;
-      video.playsInline = true;
-      videoElements.push(video);
+    const loadVideo = (url: string) => {
+      return new Promise<HTMLVideoElement>((resolve) => {
+        const video = document.createElement("video");
+        video.crossOrigin = "anonymous";
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        video.preload = "auto";
+        video.src = url;
+        video.load();
 
-      const videoTexture = new THREE.VideoTexture(video);
-      videoTexture.minFilter = THREE.LinearFilter;
-      videoTexture.magFilter = THREE.LinearFilter;
-      videoTexture.format = THREE.RGBFormat;
-      videoTextures.push(videoTexture);
-    });
+        video.oncanplay = () => {
+          resolve(video);
+        };
+      });
+    };
+
+    const createCanvasTexture = (video: HTMLVideoElement) => {
+      const canvas = document.createElement("canvas");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext("2d");
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.minFilter = THREE.LinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+
+      function updateCanvasTexture() {
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          texture.needsUpdate = true;
+        }
+        requestAnimationFrame(updateCanvasTexture);
+      }
+      updateCanvasTexture();
+
+      return texture;
+    };
+
+    // Create a placeholder texture
+    const placeholderTexture = new THREE.Texture();
+    placeholderTexture.minFilter = THREE.LinearFilter;
+    placeholderTexture.magFilter = THREE.LinearFilter;
 
     const videoGeometry = new THREE.PlaneGeometry(6, 6);
-    videoMaterial = new THREE.MeshBasicMaterial({ map: videoTextures[0] });
+    videoMaterial = new THREE.MeshBasicMaterial({ map: placeholderTexture });
     const videoPlane = new THREE.Mesh(videoGeometry, videoMaterial);
     videoScene.add(videoPlane);
+
+    Promise.all(videoUrls.map(loadVideo)).then((loadedVideos) => {
+      videoElements = loadedVideos;
+      videoTextures = loadedVideos.map(createCanvasTexture);
+
+      // Update material with the first video texture
+      videoMaterial.map = videoTextures[0];
+      videoMaterial.needsUpdate = true;
+    });
   }
 
   function InitVidParticles() {
@@ -444,9 +481,17 @@ export default function ModelPage() {
         })
         .easing(TWEEN.Easing.Back.In)
         .onStart(() => {
-          //move video to start
-          videoElements[_i].currentTime = 0;
-          videoElements[_i].play();
+          const playVideo = async () => {
+            try {
+              videoElements[_i].currentTime = 0;
+              await videoElements[_i].play();
+              videoMaterial.map = videoTextures[_i];
+              videoMaterial.needsUpdate = true;
+            } catch (e) {
+              console.error("Video play failed:", e);
+            }
+          };
+          playVideo();
           setText("");
 
           setTimeout(() => {
